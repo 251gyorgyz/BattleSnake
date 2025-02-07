@@ -1,15 +1,3 @@
-# Welcome to
-# __________         __    __  .__                               __
-# \______   \_____ _/  |__/  |_|  |   ____   ______ ____ _____  |  | __ ____
-#  |    |  _/\__  \\   __\   __\  | _/ __ \ /  ___//    \\__  \ |  |/ // __ \
-#  |    |   \ / __ \|  |  |  | |  |_\  ___/ \___ \|   |  \/ __ \|    <\  ___/
-#  |________/(______/__|  |__| |____/\_____>______>___|__(______/__|__\\_____>
-#
-# This file can be a nice home for your Battlesnake logic and helper functions.
-#
-# To get you started we've included code to prevent your Battlesnake from moving backwards.
-# For more info see docs.battlesnake.com
-
 import random
 import typing
 
@@ -22,10 +10,10 @@ def info() -> typing.Dict:
 
     return {
         "apiversion": "1",
-        "author": "",  # TODO: Your Battlesnake Username
-        "color": "#888888",  # TODO: Choose color
-        "head": "default",  # TODO: Choose head
-        "tail": "default",  # TODO: Choose tail
+        "author": "Zalan",
+        "color": "#ffff00",
+        "head": "bendr",
+        "tail": "nr-booster",
     }
 
 
@@ -63,9 +51,19 @@ def move(game_state: typing.Dict) -> typing.Dict:
         is_move_safe["up"] = False
 
     # TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
-    # board_width = game_state['board']['width']
-    # board_height = game_state['board']['height']
-
+    board_width = game_state['board']['width']
+    board_height = game_state['board']['height']
+    
+    if my_head["x"] - 1 == -1:
+        is_move_safe["left"] = False
+    elif my_head["x"] + 1 == board_width:
+        is_move_safe["right"] = False
+    elif my_head["y"] - 1 == -1:
+        is_move_safe["down"] = False
+    elif my_head["y"] + 1 == board_height:
+        is_move_safe["up"] = False
+    print(is_move_safe)
+    print("hello")
     # TODO: Step 2 - Prevent your Battlesnake from colliding with itself
     # my_body = game_state['you']['body']
 
@@ -89,7 +87,8 @@ def move(game_state: typing.Dict) -> typing.Dict:
     # food = game_state['board']['food']
 
     print(f"MOVE {game_state['turn']}: {next_move}")
-    return {"move": next_move}
+    #return {"move": next_move}
+    return "right"
 
 
 # Start server when `python main.py` is run
